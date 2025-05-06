@@ -1,6 +1,5 @@
-local encodedPassword = "QmVzdDFTY3JpcHQzRXZlcjA=" -- do not change unless you know how to re-encode
+local encodedPassword = "QmVzdDFTY3JpcHQzRXZlcjA="
 
- decoding function
 local function base64Decode(data)
 	local b='ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/'
 	data = data:gsub('[^'..b..'=]', '')
@@ -17,7 +16,6 @@ local function base64Decode(data)
 	end))
 end
 
--- GUI setup
 local gui = Instance.new("ScreenGui")
 gui.Name = "PasswordGUI"
 gui.ResetOnSpawn = false
@@ -58,15 +56,11 @@ submitButton.Parent = frame
 
 Instance.new("UICorner", submitButton).CornerRadius = UDim.new(0, 6)
 
--- Password check
 submitButton.MouseButton1Click:Connect(function()
 	if inputBox.Text == base64Decode(encodedPassword) then
 		gui:Destroy()
 		print("Access granted.")
-
-		-- ✅ Your secure code goes here
 		print("Running secure code...")
-
 	else
 		inputBox.Text = ""
 		inputBox.PlaceholderText = "Incorrect. Try again."
