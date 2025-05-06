@@ -1,4 +1,4 @@
-local correctPassword = "MySecret123" -- Change this to your own password!
+local correctPassword = "Best1Script3Ever0" -- Change this to your own password!
 
 -- Create ScreenGui
 local gui = Instance.new("ScreenGui")
