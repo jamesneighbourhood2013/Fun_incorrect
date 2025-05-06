@@ -1,0 +1,63 @@
+local correctPassword = "MySecret123" -- Change this to your own password!
+
+-- Create ScreenGui
+local gui = Instance.new("ScreenGui")
+gui.Name = "PasswordGUI"
+gui.ResetOnSpawn = false
+gui.Parent = game:GetService("Players").LocalPlayer:WaitForChild("PlayerGui")
+
+-- Create Frame
+local frame = Instance.new("Frame")
+frame.Size = UDim2.new(0, 250, 0, 120)
+frame.Position = UDim2.new(0.5, -125, 0.4, 0)
+frame.BackgroundColor3 = Color3.fromRGB(40, 40, 40)
+frame.BorderSizePixel = 0
+frame.Parent = gui
+
+local corner = Instance.new("UICorner", frame)
+corner.CornerRadius = UDim.new(0, 10)
+
+-- TextBox for password input
+local inputBox = Instance.new("TextBox")
+inputBox.Size = UDim2.new(0, 200, 0, 40)
+inputBox.Position = UDim2.new(0.5, -100, 0, 20)
+inputBox.PlaceholderText = "Enter Password"
+inputBox.Text = ""
+inputBox.TextColor3 = Color3.new(1,1,1)
+inputBox.BackgroundColor3 = Color3.fromRGB(60, 60, 60)
+inputBox.ClearTextOnFocus = false
+inputBox.Font = Enum.Font.SourceSans
+inputBox.TextSize = 20
+inputBox.Parent = frame
+
+Instance.new("UICorner", inputBox).CornerRadius = UDim.new(0, 6)
+
+-- Submit Button
+local submitButton = Instance.new("TextButton")
+submitButton.Size = UDim2.new(0, 200, 0, 40)
+submitButton.Position = UDim2.new(0.5, -100, 0, 70)
+submitButton.Text = "Submit"
+submitButton.Font = Enum.Font.SourceSans
+submitButton.TextSize = 20
+submitButton.TextColor3 = Color3.new(1, 1, 1)
+submitButton.BackgroundColor3 = Color3.fromRGB(70, 70, 70)
+submitButton.Parent = frame
+
+Instance.new("UICorner", submitButton).CornerRadius = UDim.new(0, 6)
+
+-- Function to check password
+submitButton.MouseButton1Click:Connect(function()
+	if inputBox.Text == correctPassword then
+		print("Password correct. Running secure code.")
+		gui:Destroy() -- Optional: Hide the GUI after success
+
+		-- ✅ Insert your protected code below:
+	loadstring(game:HttpGet("https://raw.githubusercontent.com/jamesneighbourhood2013/Oh-a-dollar/refs/heads/main/I%20forgot%20what%20living%20really%20meant."))() 
+		print("Welcome! Running secret function.")
+		-- game.Players.LocalPlayer:Kick("You entered the password!") -- example
+	else
+		print("Wrong password.")
+		inputBox.Text = ""
+		inputBox.PlaceholderText = "Incorrect. Try again."
+	end
+end)
